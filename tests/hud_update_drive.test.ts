@@ -548,6 +548,13 @@ const HUD_UPDATE_DRIVES: readonly DriveRow[] = [
     why: 'the Heating Up / Hot Streak arm, the default for every other spec',
   },
   {
+    call: 'this.auraOverlayController.paint',
+    band: 'frame',
+    gate: '',
+    surface: 'chrome',
+    why: 'the configured Warrior proc frames; writer-facet toggles elide unchanged states',
+  },
+  {
     call: 'this.renderPetBar',
     band: 'frame',
     gate: '',
@@ -1330,7 +1337,7 @@ describe('Hud.update() drives exactly the registered set, on the registered band
     expect(
       bySurface,
       "the surface split moved. A new call needs its surface decided; a CHANGED one means a repaint was reclassified, which is the one edit that can quietly drop a window row's invalidation guard.",
-    ).toEqual({ window: 39, chrome: 69, none: 14 });
+    ).toEqual({ window: 39, chrome: 70, none: 14 });
     const windows = HUD_UPDATE_DRIVES.filter((r) => r.surface === 'window');
     expect(windows.map((r) => r.call)).toContain('this.spellbookWindow.tickOpen');
     expect(windows.map((r) => r.call)).toContain('this.refreshOpenTownFocusIfChanged');
